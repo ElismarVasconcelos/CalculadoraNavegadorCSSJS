@@ -1,6 +1,48 @@
+.corpo {
+    background-color: #A7BBA6;
+}
+
 .container {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     align-items: center;
-    margin-top: 10rem;
+    margin-top: 30%;
+
+
+}
+
+.calculadora {
+    background-color: #1A3C19;
+    padding: 2rem 1rem;
+    border-radius: 5%;
+
+}
+
+.botao {
+    background-color: #A7E6A5;
+    opacity: 70%;
+    font-size: 1.5rem;
+    color: black;
+    border-radius: 20%;
+    width: 4rem;
+    height: 3rem;
+
+}
+
+.botao:hover {
+    background-color: #A7BBA6;
+    blur: 10%;
+}
+
+.botao-maior {
+    width: 8rem;
+}
+
+.display {
+    width: 16rem;
+    height: 4rem;
+    font-size: 1.5rem;
+    text-align: right;
+    border-radius: 10%;
+    margin-bottom: 1rem;
 }
