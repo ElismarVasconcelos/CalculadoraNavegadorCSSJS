@@ -6,7 +6,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 30%;
+    margin-top: 2rem;
 
 
 }
@@ -15,6 +15,7 @@
     background-color: #1A3C19;
     padding: 2rem 1rem;
     border-radius: 5%;
+    
 
 }
 
@@ -32,6 +33,11 @@
 .botao:hover {
     background-color: #A7BBA6;
     blur: 10%;
+
+}
+
+.botao:active{
+    background-color: #52c44e;
 }
 
 .botao-maior {
@@ -45,4 +51,13 @@
     text-align: right;
     border-radius: 10%;
     margin-bottom: 1rem;
+}
+
+.rodape{
+color: #ffffff;
+text-align: center;
+background-color: #075327;
+width: 100%;
+padding: 1rem 0rem;
+margin: 2rem 0;
 }
