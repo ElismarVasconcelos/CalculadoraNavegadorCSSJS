@@ -15,7 +15,7 @@
     background-color: #1A3C19;
     padding: 2rem 1rem;
     border-radius: 5%;
-    
+
 
 }
 
@@ -36,7 +36,7 @@
 
 }
 
-.botao:active{
+.botao:active {
     background-color: #52c44e;
 }
 
@@ -53,11 +53,11 @@
     margin-bottom: 1rem;
 }
 
-.rodape{
-color: #ffffff;
-text-align: center;
-background-color: #075327;
-width: 100%;
-padding: 1rem 0rem;
-margin: 2rem 0;
+.rodape {
+    color: #ffffff;
+    text-align: center;
+    background-color: #075327;
+    width: 100%;
+    padding: 1rem 0rem;
+    margin: 2rem 0;
 }
