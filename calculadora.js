@@ -1,69 +1,125 @@
+const botao = document.querySelectorAll('.botao');
 const botaoNumerico = document.querySelectorAll('#numero');
-const operador = document.querySelectorAll('#operador');
-let display = document.querySelector('.display')
+const botaoOperador = document.querySelectorAll('#operador');
+
+const botaoResultado = document.querySelector('#igual')
+
+let display = document.querySelector('.display');
+let num1 = '';
+let sinal = null;
+let num2 = '';
+let resultado = '';
 
 
 
-let numeroAtual = '';
-let primOperador = null;
 
+let equacao = '';
 
 botaoNumerico.forEach(button => {
+
     button.addEventListener('click', () => {
-        if (button.textContent === '.' && numeroAtual === '') {
-            if (!numeroAtual.includes('.')) {
-                numeroAtual = '0'
-                numeroAtual += button.textContent;
-            }
+
+        if (button.textContent === ('.') && equacao === ('') || equacao === '0') {
+            equacao = '0'
+            equacao += button.textContent;
         }
+        else if (button.textContent === ('.') && equacao.includes('.'))
+            return
         else {
-            numeroAtual += button.textContent;
-            display.value = numeroAtual
+            equacao += button.textContent
         }
-    })
+
+
+        display.value = equacao
+    }
+    )
 })
 
-
-operador.forEach(button => {
+botaoOperador.forEach(button => {
     button.addEventListener('click', () => {
-        if (button.textContent === 'c') {
-            limpar();
+
+        const operadores = ['+', '-', '*', '/']
+        const ultimoCaractere = equacao[equacao.length - 1]
+
+
+        if (operadores.includes(ultimoCaractere) && operadores.includes(button.value)) {
+            equacao = equacao.slice(0, -1) + button.value
+        } else if (equacao === '' && button.value === '-') {
+            equacao += button.value;
+        } else if (equacao !== '') {
+            equacao += button.value;
         }
-        else if (button.textContent === 'b') {
-            apagar();
+
+        display.value = equacao
+
+        if (equacao !== '' && operadores.includes(equacao[equacao.length - 1])) {
+            num1 = equacao.slice(0, -1)
+            sinal = equacao[equacao.length - 1]
+            equacao = ''
         }
-        else if (button.textContent === '=') {
-            resultado();
+
+        if (sinal && num1) {
+            botaoOperador.forEach(b => b.disabled = true);
         } else {
+            botaoOperador.forEach(b => b.disabled = false);
+        }
 
 
-            if (button.textContent === '-' && numeroAtual === '') {
-                numeroAtual += '-'
-                display.value = numeroAtual;
+    })
+})
+
+
+botao.forEach(button => {
+    button.addEventListener('click', () => {
+        if (button.value === '=') {
+            if (num1 && sinal && equacao) {
+                num2 = equacao
             }
-            else if (primOperador === null && numeroAtual !== '') {
-                primOperador = button.textContent;
-                numeroAtual += ` ${primOperador} `;
-                display.value = numeroAtual;
-            }
+            calcular()
+
+        }
+        if (button.textContent === 'c') {
+            resetar()
+        }
+
+        if (button.textContent === 'b') {
+            apagar()
         }
     })
 })
 
-function limpar() {
-    numeroAtual = ''
-    primOperador = null
-    display.value = numeroAtual;
+
+
+
+
+function calcular() {
+    if (num1 && num2 && sinal) {
+        num1 = parseFloat(num1)
+        num2 = parseFloat(num2)
+        resultado = eval(num1 + sinal + num2)
+        num1 = resultado
+        num1 = num1.toString()
+        display.value = resultado
+        sinal = null
+        num2 = ''
+        resultado = ''
+        botaoOperador.forEach(b => b.disabled = false)
+        equacao = num1
+
+    }
+}
+
+function resetar() {
+    num1 = '';
+    sinal = null;
+    num2 = '';
+    equacao = ''
+    resultado = ''
+    botaoOperador.forEach(b => b.disabled = false)
+    display.value = equacao
 }
 
 function apagar() {
-    numeroAtual = numeroAtual.slice(0, -1)
-    display.value = numeroAtual;
+    equacao = equacao.slice(0, -1)
+    display.value = equacao;
 }
-
-function resultado() {
-
-}
-
-// poder utilizar o . no segundo numero
-// melhorias:   criar mod escuto e salvar o histórico de calculos realizados
